@@ -1,0 +1,58 @@
+{
+	"name": "svelte-render",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "svelte-kit sync && svelte-package",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "npm run format && eslint --ignore-path .gitignore .",
+		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
+		"test": "vitest run --coverage",
+		"test:only": "vitest run",
+		"test:watch": "vitest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/bryanmylee/svelte-render.git"
+	},
+	"keywords": [
+		"svelte",
+		"sveltejs",
+		"render",
+		"template"
+	],
+	"author": "Bryan Lee",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bryanmylee/svelte-render/issues"
+	},
+	"homepage": "https://github.com/bryanmylee/svelte-render#readme",
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"@sveltejs/package": "next",
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/svelte": "^3.2.1",
+		"@typescript-eslint/eslint-plugin": "^5.27.0",
+		"@typescript-eslint/parser": "^5.27.0",
+		"@vitest/coverage-c8": "^0.23.4",
+		"eslint": "^8.16.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-svelte3": "^4.0.0",
+		"jsdom": "^20.0.0",
+		"prettier": "^2.6.2",
+		"prettier-plugin-svelte": "^2.7.0",
+		"svelte": "^3.44.0",
+		"svelte-check": "^2.7.1",
+		"svelte-preprocess": "^4.10.6",
+		"tslib": "^2.3.1",
+		"typescript": "^4.8.4",
+		"vite": "^3.1.0",
+		"vitest": "^0.23.4"
+	},
+	"type": "module",
+	"dependencies": {
+		"svelte-subscribe": "^1.0.5"
+	}
+}
