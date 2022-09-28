@@ -30,7 +30,7 @@ $ npm i -D svelte-render
 
 ## API
 
-Svelte Render was primarily built to support complex rendering definitions for [Svelte Headless Table](https://github.com/bryanmylee/svelte-headless-table). You can find full documentation on the `createRender` function on its [documentation site](https://svelte-headless-table.bryanmylee.com/docs/api/create-render).
+Svelte Render was primarily built to support complex rendering definitions for [Svelte Headless Table](https://github.com/bryanmylee/svelte-headless-table). You can find full documentation on `createRender` on the [documentation site](https://svelte-headless-table.bryanmylee.com/docs/api/create-render).
 
 ### `createRender: (component, props)`
 
@@ -59,4 +59,15 @@ Svelte Render supports the Svelte event system by chaining `.on` calls on `creat
 const button = createRender(Button)
   .on('click', handleClick)
   .on('click', (ev) => console.log(ev));
+```
+
+### `<Render />`
+
+The `<Render />` component accepts one prop `of` for the configuration returned by `createRender`. `<Render />` handles props and automatically registers the event handlers defined with `.on`.
+
+```svelte
+<script>
+  const avatar = createRender(Avatar, {name: 'Ada Lovelace'});
+</script>
+<Render of={avatar} />
 ```
