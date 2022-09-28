@@ -1,7 +1,9 @@
 <script lang="ts">
 	import {Render, type RenderConfig} from '$lib';
 
-	export let config: RenderConfig<any, any>;
+	type TComponent = $$Generic<SvelteComponent>;
+
+	export let config: RenderConfig<TComponent>;
 </script>
 
 <div data-testid="template">
