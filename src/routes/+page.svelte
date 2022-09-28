@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type {ComponentEvents} from 'svelte';
 	import {createRender, Render} from '$lib';
 	import Rocket from '../tests/rocket.svelte';
 	import MultipleRockets from '../tests/multiple-rockets.svelte';
@@ -6,7 +7,9 @@
 
 	const rocket = createRender(Rocket);
 	const multipleRockets = createRender(MultipleRockets, {times: 3});
-	const interactiveRocket = createRender(InteractiveRocket);
+	const interactiveRocket = createRender(InteractiveRocket)
+		.on('click', (ev) => console.log(ev))
+		.on('launch', (ev) => console.log(ev));
 </script>
 
 <h1>Welcome to your library project</h1>

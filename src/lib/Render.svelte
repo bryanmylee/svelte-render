@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type {RenderConfig} from '$lib/types';
-	import {isReadable, Undefined} from './store';
-	import {Subscribe} from 'svelte-subscribe';
 	import type {SvelteComponent} from 'svelte';
+	import ComponentRender from './ComponentRender.svelte';
+	import type {RenderConfig} from './createRender';
+	import {isReadable, Undefined} from './store';
 
 	type TComponent = $$Generic<SvelteComponent>;
 
@@ -15,12 +15,8 @@
 {#if isReadable(config)}
 	<!-- Auto-subscription must be on a non-nullable `Readable`. -->
 	{$readableConfig}
-{:else if typeof config === 'string' || typeof config === 'number'}
+{:else if typeof config !== 'object'}
 	{config}
-{:else if isReadable(config.props)}
-	<Subscribe props={config.props} let:props>
-		<svelte:component this={config.component} {...props ?? {}} />
-	</Subscribe>
 {:else}
-	<svelte:component this={config.component} {...config.props ?? {}} />
+	<ComponentRender {config} />
 {/if}

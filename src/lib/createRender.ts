@@ -1,4 +1,4 @@
-import type {ComponentProps, SvelteComponent, SvelteComponentTyped} from 'svelte';
+import type {ComponentEvents, ComponentProps, SvelteComponent, SvelteComponentTyped} from 'svelte';
 import type {Readable} from 'svelte/store';
 
 export type RenderConfig<TComponent extends SvelteComponent = SvelteComponent> =
@@ -15,21 +15,30 @@ export class ComponentRenderConfig<TComponent extends SvelteComponent = SvelteCo
 		public component: Constructor<TComponent>,
 		public props?: ComponentProps<TComponent> | Readable<ComponentProps<TComponent>>,
 	) {}
+
+	eventHandlers: [keyof ComponentEvents<TComponent>, (ev: Event) => void][] = [];
+	on<TEventType extends keyof ComponentEvents<TComponent>>(
+		type: TEventType,
+		handler: (ev: ComponentEvents<TComponent>[TEventType]) => void,
+	): this {
+		this.eventHandlers.push([type, handler]);
+		return this;
+	}
 }
 
 // Allow omission of the `props` argument if the component accepts no props.
 export function createRender<TComponent extends SvelteComponentTyped<Record<string, never>>>(
 	component: Constructor<TComponent>,
-): RenderConfig<TComponent>;
+): ComponentRenderConfig<TComponent>;
 
 export function createRender<TComponent extends SvelteComponent>(
 	component: Constructor<TComponent>,
 	props: ComponentProps<TComponent> | Readable<ComponentProps<TComponent>>,
-): RenderConfig<TComponent>;
+): ComponentRenderConfig<TComponent>;
 
 export function createRender<TComponent extends SvelteComponent>(
 	component: Constructor<TComponent>,
 	props?: ComponentProps<TComponent> | Readable<ComponentProps<TComponent>>,
-): RenderConfig<TComponent> {
+): ComponentRenderConfig<TComponent> {
 	return new ComponentRenderConfig(component, props);
 }
