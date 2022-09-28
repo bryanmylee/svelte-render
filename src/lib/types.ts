@@ -1,22 +1,16 @@
-import type {SvelteComponent} from 'svelte';
+import type {SvelteComponent, ComponentProps} from 'svelte';
 import type {Readable} from 'svelte/store';
 
-export type EmptyProps = Record<string, never>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Constructor<TInstance> = new (...args: any[]) => TInstance;
 
-export type SvelteComponentWithProps<
-	TProps extends object = EmptyProps,
-	TComponent extends SvelteComponent = SvelteComponent,
-> = AConstructorTypeOf<TComponent, [Svelte2TsxComponentConstructorParameters<TProps>]>;
-
-export type ComponentRenderConfig<
-	TProps extends object = EmptyProps,
-	TComponent extends SvelteComponent = SvelteComponent,
-> = {
-	component: SvelteComponentWithProps<TProps, TComponent>;
-	props?: TProps | Readable<TProps>;
+export type ComponentRenderConfig<TComponent extends SvelteComponent = SvelteComponent> = {
+	component: Constructor<TComponent>;
+	props?: ComponentProps<TComponent> | Readable<ComponentProps<TComponent>>;
 };
 
-export type RenderConfig<
-	TProps extends object = EmptyProps,
-	TComponent extends SvelteComponent = SvelteComponent,
-> = ComponentRenderConfig<TProps, TComponent> | string | number | Readable<string | number>;
+export type RenderConfig<TComponent extends SvelteComponent = SvelteComponent> =
+	| ComponentRenderConfig<TComponent>
+	| string
+	| number
+	| Readable<string | number>;

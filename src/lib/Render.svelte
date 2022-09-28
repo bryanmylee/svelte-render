@@ -1,17 +1,15 @@
 <script lang="ts">
-	import type {ComponentRenderConfig, RenderConfig} from '$lib/types';
+	import type {RenderConfig} from '$lib/types';
 	import {isReadable, Undefined} from './store';
 	import {Subscribe} from 'svelte-subscribe';
 	import type {SvelteComponent} from 'svelte';
 
-	type TProps = $$Generic<object>;
 	type TComponent = $$Generic<SvelteComponent>;
 
-	let config: RenderConfig<TProps, TComponent>;
+	let config: RenderConfig<TComponent>;
 	export {config as of};
 
 	const readableConfig = isReadable(config) ? config : Undefined;
-	const noTypeConfig = config as ComponentRenderConfig<any>;
 </script>
 
 {#if isReadable(config)}
@@ -24,5 +22,5 @@
 		<svelte:component this={config.component} {...props ?? {}} />
 	</Subscribe>
 {:else}
-	<svelte:component this={noTypeConfig.component} {...noTypeConfig.props ?? {}} />
+	<svelte:component this={config.component} {...config.props ?? {}} />
 {/if}
