@@ -41,6 +41,7 @@ Svelte Render was primarily built to support complex rendering definitions for [
 ```ts
 const icon = createRender(TickIcon); // ✅
 const avatar = createRender(Avatar); // ❌ Type error.
+const avatar = createRender(Avatar, {name: 'Ada Lovelace'}); // ✅
 ```
 
 `props` must be a [Svelte store](https://svelte.dev/tutorial/writable-stores) if you need prop reactivity.
