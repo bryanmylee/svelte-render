@@ -11,12 +11,12 @@ Manage complex Svelte behaviors outside of templates with full type safety.
 
 ```svelte
 <script>
-  import {Render, createRender} from 'svelte-render';
-  import Avatar from './Avatar.svelte';
-  // ...
-  const avatar = createRender(Avatar, {name: 'Ada Lovelace'})
-    .on('click', handleClick)
-    .on('launch', handleLaunch);
+	import {Render, createRender} from 'svelte-render';
+	import Avatar from './Avatar.svelte';
+	// ...
+	const avatar = createRender(Avatar, {name: 'Ada Lovelace'})
+		.on('click', handleClick)
+		.on('launch', handleLaunch);
 </script>
 
 <Render of={avatar} />
@@ -57,8 +57,14 @@ Svelte Render supports the Svelte event system by chaining `.on` calls on `creat
 
 ```ts
 const button = createRender(Button)
-  .on('click', handleClick)
-  .on('click', (ev) => console.log(ev));
+	.on('click', handleClick)
+	.on('click', (ev) => console.log(ev));
+```
+
+`<Render of={button} />` becomes:
+
+```svelte
+<Button on:click={handleClick} on:click={(ev) => console.log(ev)} />
 ```
 
 ### `<Render />`
@@ -67,7 +73,8 @@ The `<Render />` component accepts one prop `of` for the configuration returned 
 
 ```svelte
 <script>
-  const avatar = createRender(Avatar, {name: 'Ada Lovelace'});
+	const avatar = createRender(Avatar, {name: 'Ada Lovelace'});
 </script>
+
 <Render of={avatar} />
 ```
