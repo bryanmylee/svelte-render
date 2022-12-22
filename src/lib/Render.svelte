@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type {SvelteComponent} from 'svelte';
-	import ComponentRender from './ComponentRender.svelte';
+	import ComponentRenderer from './ComponentRenderer.svelte';
 	import type {RenderConfig} from './createRender';
 	import {isReadable, Undefined} from './store';
 
@@ -8,7 +8,6 @@
 
 	let config: RenderConfig<TComponent>;
 	export {config as of};
-
 	const readableConfig = isReadable(config) ? config : Undefined;
 </script>
 
@@ -18,5 +17,5 @@
 {:else if typeof config !== 'object'}
 	{config}
 {:else}
-	<ComponentRender {config} />
+	<ComponentRenderer {config} />
 {/if}
