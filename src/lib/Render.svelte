@@ -8,7 +8,6 @@
 
 	let config: RenderConfig<TComponent>;
 	export {config as of};
-
 	const readableConfig = isReadable(config) ? config : Undefined;
 </script>
 

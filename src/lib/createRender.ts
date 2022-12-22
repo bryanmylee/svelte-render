@@ -24,6 +24,12 @@ export class ComponentRenderConfig<TComponent extends SvelteComponent = SvelteCo
 		this.eventHandlers.push([type, handler]);
 		return this;
 	}
+
+	children: RenderConfig[] = [];
+	slot(...children: RenderConfig[]) {
+		this.children = children;
+		return this;
+	}
 }
 
 // Allow omission of the `props` argument if the component accepts no props.
