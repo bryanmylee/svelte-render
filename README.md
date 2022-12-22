@@ -3,7 +3,7 @@
 [![npm version](http://img.shields.io/npm/v/svelte-render.svg)](https://www.npmjs.com/package/svelte-render)
 [![npm downloads](https://img.shields.io/npm/dm/svelte-render.svg)](https://www.npmjs.com/package/svelte-render)
 ![license](https://img.shields.io/npm/l/svelte-render)
-![build](https://img.shields.io/github/workflow/status/bryanmylee/svelte-render/publish)
+![build](https://img.shields.io/github/actions/workflow/status/bryanmylee/svelte-render/publish.yml)
 [![coverage](https://coveralls.io/repos/github/bryanmylee/svelte-render/badge.svg?branch=main)](https://coveralls.io/github/bryanmylee/svelte-render?branch=main)
 [![size](https://img.shields.io/bundlephobia/min/svelte-render)](https://bundlephobia.com/result?p=svelte-render)
 
