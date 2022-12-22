@@ -11,12 +11,12 @@ Manage complex Svelte behaviors outside of templates with full type safety.
 
 ```svelte
 <script>
-	import {Render, createRender} from 'svelte-render';
-	import Avatar from './Avatar.svelte';
-	// ...
-	const avatar = createRender(Avatar, {name: 'Ada Lovelace'})
-		.on('click', handleClick)
-		.on('launch', handleLaunch);
+  import {Render, createRender} from 'svelte-render';
+  import Avatar from './Avatar.svelte';
+  // ...
+  const avatar = createRender(Avatar, {name: 'Ada Lovelace'})
+    .on('click', handleClick)
+    .on('launch', handleLaunch);
 </script>
 
 <Render of={avatar} />
@@ -44,7 +44,7 @@ Svelte Render was primarily built to support complex rendering definitions for [
 
 ```svelte
 <script>
-	const avatar = createRender(Avatar, {name: 'Ada Lovelace'});
+  const avatar = createRender(Avatar, {name: 'Ada Lovelace'});
 </script>
 
 <Render of={avatar} />
@@ -81,8 +81,8 @@ Svelte Render supports the Svelte event system by chaining `.on` calls on `creat
 
 ```ts
 const button = createRender(Button)
-	.on('click', handleClick)
-	.on('click', (ev) => console.log(ev));
+  .on('click', handleClick)
+  .on('click', (ev) => console.log(ev));
 ```
 
 `<Render of={button} />` becomes:
@@ -100,14 +100,18 @@ Svelte Render also supports Svelte's default slot system.
 _Due to technical limitations with Svelte, it is not possible to assign render configurations to named slots._
 
 ```ts
-const button = createRender(Button).slot(createRender(Icon, {name: 'user'}), 'Log in');
+const button = createRender(Button)
+  .slot(
+    createRender(Icon, {name: 'user'}),
+    'Log in'
+  );
 ```
 
 `<Render of={button} />` becomes:
 
 ```svelte
 <Button>
-	<Icon name="user" />
-	Log in
+  <Icon name="user" />
+  Log in
 </Button>
 ```
