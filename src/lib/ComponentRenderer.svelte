@@ -2,22 +2,23 @@
 	import {onMount, SvelteComponent} from 'svelte';
 	import {Subscribe} from 'svelte-subscribe';
 	import type {ComponentRenderConfig} from './createRender';
+	import PropsRenderer from './PropsRenderer.svelte';
 	import {isReadable} from './store';
 
 	type TComponent = $$Generic<SvelteComponent>;
 
 	export let config: ComponentRenderConfig<TComponent>;
 
-	let instance: TComponent;
+	let instance: TComponent | undefined;
 	onMount(function attachEventHandlers() {
 		config.eventHandlers.forEach(([type, handler]) => {
-			const callbacks = instance.$$.callbacks[type] ?? [];
+			const callbacks = instance!.$$.callbacks[type] ?? [];
 			callbacks.push(handler);
-			instance.$$.callbacks[type] = callbacks;
+			instance!.$$.callbacks[type] = callbacks;
 		});
 		return function detachEventHandlers() {
 			config.eventHandlers.forEach(([type, handler]) => {
-				const callbacks: unknown[] = instance.$$.callbacks[type];
+				const callbacks: unknown[] = instance!.$$.callbacks[type];
 				const idx = callbacks.findIndex((c) => c === handler);
 				callbacks.splice(idx, 1);
 			});
@@ -27,8 +28,8 @@
 
 {#if isReadable(config.props)}
 	<Subscribe props={config.props} let:props>
-		<svelte:component this={config.component} bind:this={instance} {...props ?? {}} />
+		<PropsRenderer bind:instance {config} {props} />
 	</Subscribe>
 {:else}
-	<svelte:component this={config.component} bind:this={instance} {...config.props ?? {}} />
+	<PropsRenderer bind:instance {config} props={config.props} />
 {/if}
