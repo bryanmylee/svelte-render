@@ -1,7 +1,7 @@
 {
 	"name": "svelte-render",
 	"description": "Manage complex Svelte behaviors outside of templates with full type safety",
-	"version": "1.6.0",
+	"version": "1.6.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "svelte-kit sync && svelte-package",
@@ -46,7 +46,6 @@
 		"jsdom": "^20.0.0",
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
-		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",
@@ -57,5 +56,8 @@
 	"type": "module",
 	"dependencies": {
 		"svelte-subscribe": "^1.0.5"
+	},
+	"peerDependencies": {
+		"svelte": "^3 || ^4"
 	}
 }
