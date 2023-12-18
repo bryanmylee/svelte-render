@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {Render, type RenderConfig} from '$lib';
+	import {Render, type RenderConfig} from '$lib/index.js';
 
 	type TComponent = $$Generic<SvelteComponent>;
 

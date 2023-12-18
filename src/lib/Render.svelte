@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type {SvelteComponent} from 'svelte';
 	import ComponentRenderer from './ComponentRenderer.svelte';
-	import type {RenderConfig} from './createRender';
-	import {isReadable, Undefined} from './store';
+	import type {RenderConfig} from './createRender.js';
+	import {isReadable, Undefined} from './store.js';
 
 	type TComponent = $$Generic<SvelteComponent>;
 
