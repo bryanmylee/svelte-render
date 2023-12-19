@@ -1,9 +1,9 @@
 <script lang="ts">
 	import {onMount, SvelteComponent} from 'svelte';
 	import {Subscribe} from 'svelte-subscribe';
-	import type {ComponentRenderConfig} from './createRender';
+	import type {ComponentRenderConfig} from './createRender.js';
 	import PropsRenderer from './PropsRenderer.svelte';
-	import {isReadable} from './store';
+	import {isReadable} from './store.js';
 
 	type TComponent = $$Generic<SvelteComponent>;
 

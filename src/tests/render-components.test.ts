@@ -1,4 +1,4 @@
-import {createRender} from '$lib';
+import {createRender} from '$lib/index.js';
 import {act, render, screen} from '@testing-library/svelte';
 import {writable} from 'svelte/store';
 import Rocket from './rocket.svelte';

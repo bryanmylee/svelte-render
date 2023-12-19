@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type {ComponentEvents} from 'svelte';
-	import {createRender, Render} from '$lib';
+	import {createRender, Render} from '$lib/index.js';
 	import Rocket from '../tests/rocket.svelte';
 	import MultipleRockets from '../tests/multiple-rockets.svelte';
 	import InteractiveRocket from '../tests/interactive-rocket.svelte';

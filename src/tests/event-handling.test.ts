@@ -1,6 +1,6 @@
-import {createRender} from '$lib';
+import {createRender} from '$lib/index.js';
 import {render, screen} from '@testing-library/svelte';
-import userEvent from '@testing-library/user-event';
+import {userEvent} from '@testing-library/user-event';
 import InteractiveRocket from './interactive-rocket.svelte';
 import Template from './template.svelte';
 

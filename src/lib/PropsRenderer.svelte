@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type {ComponentProps, SvelteComponent} from 'svelte';
-	import type {ComponentRenderConfig} from './createRender';
+	import type {ComponentRenderConfig} from './createRender.js';
 	import Render from './Render.svelte';
 
 	type TComponent = $$Generic<SvelteComponent>;
