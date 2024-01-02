@@ -91,20 +91,26 @@ const button = createRender(Button)
 <Button on:click={handleClick} on:click={(ev) => console.log(ev)} />
 ```
 
+However, note that the callback handler passed into `.on(event, handler)` is not dynamic and will only capture references to variables as they were when the render configuration is created.
+
+If you need a handler to access dynamic data, use a dynamic system like Svelte Stores.
+
+```ts
+const counter = writable(0);
+const button = createRender(Button)
+  .on('click', (ev) => counter.update(c => c + 1));
+```
+
 ### `.slot(...config)`
 
 Svelte Render also supports Svelte's default slot system.
 
 `.slot` receives any number of arguments with the same type as `of`, including `ComponentRenderConfig` returned by `createRender`, primitive data, and `Writable`. This makes it useful for rendering wrapper components such as `<Button />` and `<Label />`.
 
-_Due to technical limitations with Svelte, it is not possible to assign render configurations to named slots._
+_Due to technical limitations with Svelte 4, it is not possible to assign render configurations to named slots._
 
 ```ts
-const button = createRender(Button)
-  .slot(
-    createRender(Icon, {name: 'user'}),
-    'Log in'
-  );
+const button = createRender(Button).slot(createRender(Icon, {name: 'user'}), 'Log in');
 ```
 
 `<Render of={button} />` becomes:
