@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {onMount, SvelteComponent} from 'svelte';
+	import {onMount, type SvelteComponent} from 'svelte';
 	import {Subscribe} from 'svelte-subscribe';
 	import type {ComponentRenderConfig} from './createRender.js';
 	import PropsRenderer from './PropsRenderer.svelte';
